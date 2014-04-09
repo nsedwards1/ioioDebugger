@@ -16,6 +16,7 @@ namespace ioioDebuger
             {
                 WebRequest wrGETURL;
                 wrGETURL = WebRequest.Create(url);
+                wrGETURL.Timeout = 200;
 
                 Stream objStream;
                 objStream = wrGETURL.GetResponse().GetResponseStream();
@@ -42,12 +43,14 @@ namespace ioioDebuger
             }
         }
 
-        public void setState(int pin, int state)
+        public void setState(IPAddress ip, int pin, int state)
         {
-            string website = "http://localhost:8181/api/trigger?pin=" + pin + "&state=" + state;
+            string website = "http://" + ip.ToString() + ":8181/api/trigger?pin=" + pin + "&state=" + state;
             WebRequest wrGETURL;
             wrGETURL = WebRequest.Create(website);
+            wrGETURL.Timeout = 200;
             wrGETURL.GetResponse();
+            wrGETURL.Abort();
         }
     }
 }

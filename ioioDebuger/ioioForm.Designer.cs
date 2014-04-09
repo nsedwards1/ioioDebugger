@@ -48,18 +48,25 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tb2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbIpAddress = new System.Windows.Forms.TextBox();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbUps = new System.Windows.Forms.TextBox();
+            this.sendReqLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // richTextBox1
             // 
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(7, 72);
+            this.richTextBox1.Location = new System.Drawing.Point(7, 75);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(339, 757);
+            this.richTextBox1.Size = new System.Drawing.Size(339, 706);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
@@ -79,7 +86,7 @@
             this.tbStatusUrl.Name = "tbStatusUrl";
             this.tbStatusUrl.Size = new System.Drawing.Size(269, 20);
             this.tbStatusUrl.TabIndex = 6;
-            this.tbStatusUrl.Text = "http://localhost:8181/api/status";
+            this.tbStatusUrl.Text = "http://192.168.0.17:8181/api/status";
             // 
             // label3
             // 
@@ -130,9 +137,9 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.runButton);
             this.groupBox2.Controls.Add(this.tbStatusUrl);
-            this.groupBox2.Location = new System.Drawing.Point(10, 139);
+            this.groupBox2.Location = new System.Drawing.Point(10, 187);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(352, 835);
+            this.groupBox2.Size = new System.Drawing.Size(352, 787);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Web Request";
@@ -193,14 +200,15 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.sendReqLabel);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.send_button);
             this.groupBox3.Controls.Add(this.tbPinNum);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.tbPinValue);
-            this.groupBox3.Location = new System.Drawing.Point(28, 22);
+            this.groupBox3.Location = new System.Drawing.Point(12, 47);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(205, 86);
+            this.groupBox3.Size = new System.Drawing.Size(234, 111);
             this.groupBox3.TabIndex = 25;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Assign Pin Value";
@@ -228,12 +236,71 @@
             this.label4.TabIndex = 29;
             this.label4.Text = "Data Holder:";
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(14, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "IP Address:";
+            // 
+            // tbIpAddress
+            // 
+            this.tbIpAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbIpAddress.Location = new System.Drawing.Point(81, 15);
+            this.tbIpAddress.Name = "tbIpAddress";
+            this.tbIpAddress.Size = new System.Drawing.Size(88, 20);
+            this.tbIpAddress.TabIndex = 12;
+            this.tbIpAddress.Text = "192.168.0.17";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(252, 113);
+            this.trackBar1.Maximum = 15;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(104, 45);
+            this.trackBar1.TabIndex = 30;
+            this.trackBar1.Value = 10;
+            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(255, 97);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(101, 13);
+            this.label6.TabIndex = 31;
+            this.label6.Text = "updates per second";
+            // 
+            // tbUps
+            // 
+            this.tbUps.Enabled = false;
+            this.tbUps.Location = new System.Drawing.Point(252, 147);
+            this.tbUps.Name = "tbUps";
+            this.tbUps.Size = new System.Drawing.Size(30, 20);
+            this.tbUps.TabIndex = 32;
+            // 
+            // sendReqLabel
+            // 
+            this.sendReqLabel.AutoSize = true;
+            this.sendReqLabel.Location = new System.Drawing.Point(7, 66);
+            this.sendReqLabel.Name = "sendReqLabel";
+            this.sendReqLabel.Size = new System.Drawing.Size(0, 13);
+            this.sendReqLabel.TabIndex = 25;
+            // 
             // ioioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 986);
+            this.Controls.Add(this.tbUps);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.tbIpAddress);
             this.Controls.Add(this.tb2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox3);
@@ -247,6 +314,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,6 +340,12 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox tb2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbIpAddress;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tbUps;
+        private System.Windows.Forms.Label sendReqLabel;
 
     }
 }

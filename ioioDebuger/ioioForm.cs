@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.IO;
+using System.Net;
 
 namespace ioioDebuger
 {
@@ -24,6 +25,7 @@ namespace ioioDebuger
         {
             InitializeComponent();
             timer1.Enabled = true;
+            tbUps.Text = trackBar1.Value.ToString();
 
             m_inputControls.Add(new DHControl("RPM Lever", FloatIntBoolNone.Float, textBox1, false, -0.01f));
             m_inputControls.Add(new DHControl("Green Button", FloatIntBoolNone.Int, tb2, false));
@@ -43,29 +45,32 @@ namespace ioioDebuger
             richTextBox1.Text = xmlString;
             pinList.Clear();
             using (XmlReader reader = XmlReader.Create(new StringReader(xmlString)))
-            {
-                while (reader.Read())
+                if (xmlString != "Error with Web Request")
                 {
-                    if (reader.Name == "pin")
                     {
-                        pinObject pin = new pinObject();
-                        pin.number = reader.GetAttribute("num");
-                        pin.name = reader.GetAttribute("name");
-                        pin.status = reader.GetAttribute("status");
-                        pin.calibrated = reader.GetAttribute("calibrated");
-                        pin.type = reader.GetAttribute("type");
-                        if (pin.type == "din")
+                        while (reader.Read())
                         {
-                            DataHolderIface.SetIntVal(pin.name, Convert.ToInt32(Math.Floor(Convert.ToDouble(pin.calibrated))));
+                            if (reader.Name == "pin")
+                            {
+                                pinObject pin = new pinObject();
+                                pin.number = reader.GetAttribute("num");
+                                pin.name = reader.GetAttribute("name");
+                                pin.status = reader.GetAttribute("status");
+                                pin.calibrated = reader.GetAttribute("calibrated");
+                                pin.type = reader.GetAttribute("type");
+                                if (pin.type == "din")
+                                {
+                                    DataHolderIface.SetIntVal(pin.name, Convert.ToInt32(Math.Floor(Convert.ToDouble(pin.calibrated))));
+                                }
+                                else if (pin.type == "ain")
+                                {
+                                    DataHolderIface.SetFloatVal(pin.name, float.Parse(pin.calibrated));
+                                }
+                                pinList.Add(pin);
+                            }
                         }
-                        else if (pin.type == "ain")
-                        {
-                            DataHolderIface.SetFloatVal(pin.name, float.Parse(pin.calibrated));
-                        }
-                        pinList.Add(pin);
                     }
                 }
-            }
             dataGridView1.DataSource = pinList;
             return pinList;
         }
@@ -87,13 +92,16 @@ namespace ioioDebuger
                 runLabel.Text = "running...";
             }
         }
-
+        bool gettingStatus;
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (run)
+            if (run && !gettingStatus)
             {
-                string xmlString = myIoioIo.webRequest(tbStatusUrl.Text);
+                gettingStatus = true;
+                string webAddress = "http://" + tbIpAddress.Text + ":8181/api/status";
+                string xmlString = myIoioIo.webRequest(webAddress);
                 parseXml(xmlString);
+                gettingStatus = false;
             }
 
             foreach (DHControl dh in m_inputControls)
@@ -106,7 +114,9 @@ namespace ioioDebuger
         {
             try
             {
-                myIoioIo.setState(int.Parse(tbPinNum.Text), int.Parse(tbPinValue.Text));
+                //myIoioIo.setState(IPAddress.Parse(tbIpAddress.Text), int.Parse(tbPinNum.Text), int.Parse(tbPinValue.Text));
+                string website = "http://" + tbIpAddress.Text.ToString() + ":8181/api/trigger?pin=" + tbPinNum.Text + "&state=" + tbPinValue.Text;
+                sendReqLabel.Text = myIoioIo.webRequest(website);
             }
             catch { }
         }
@@ -116,6 +126,17 @@ namespace ioioDebuger
             if (e.KeyChar == '\r')
             {
                 send_button_Click(sender, e);
+            }
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            tbUps.Text = trackBar1.Value.ToString();
+            if (trackBar1.Value == 0) timer1.Enabled = false;
+            else
+            {
+                timer1.Interval = 1000 / trackBar1.Value;
+                timer1.Enabled = true;
             }
         }
     }
