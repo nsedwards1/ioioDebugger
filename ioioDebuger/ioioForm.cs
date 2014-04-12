@@ -66,7 +66,7 @@ namespace ioioDebuger
                                 {
                                     DataHolderIface.SetFloatVal(pin.name, float.Parse(pin.calibrated));
                                 }
-                                pinList.Add(pin);
+                                if (pin.name != "") pinList.Add(pin);
                             }
                         }
                     }
@@ -93,6 +93,7 @@ namespace ioioDebuger
             }
         }
         bool gettingStatus;
+        string lastXmlString;
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (run && !gettingStatus)
@@ -101,6 +102,7 @@ namespace ioioDebuger
                 string webAddress = "http://" + tbIpAddress.Text + ":8181/api/status";
                 string xmlString = myIoioIo.webRequest(webAddress);
                 parseXml(xmlString);
+                errorCheck(xmlString);
                 gettingStatus = false;
             }
 
@@ -108,6 +110,29 @@ namespace ioioDebuger
             {
                 dh.readFromDataHolder();
             }
+        }
+
+        int counter;
+        int errorCount = 0;
+        bool errorNoted = false;
+        private void errorCheck(string xmlString)
+        {
+            if (xmlString == lastXmlString)
+            {
+                counter = 0;
+                errorNoted = false;
+            }
+            else
+            {
+                counter++;
+            }
+            if (counter > 100 && !errorNoted)
+            {
+                errorCount++;
+                tbErrorCount.Text = errorCount.ToString();
+                errorNoted = true;
+            }
+            lastXmlString = xmlString;
         }
 
         private void send_button_Click(object sender, EventArgs e)
