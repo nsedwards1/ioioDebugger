@@ -47,27 +47,25 @@ namespace ioioDebuger
             using (XmlReader reader = XmlReader.Create(new StringReader(xmlString)))
                 if (xmlString != "Error with Web Request")
                 {
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        if (reader.Name == "pin")
                         {
-                            if (reader.Name == "pin")
+                            pinObject pin = new pinObject();
+                            pin.number = reader.GetAttribute("num");
+                            pin.name = reader.GetAttribute("name");
+                            pin.status = reader.GetAttribute("status");
+                            pin.calibrated = reader.GetAttribute("calibrated");
+                            pin.type = reader.GetAttribute("type");
+                            if (pin.type == "din")
                             {
-                                pinObject pin = new pinObject();
-                                pin.number = reader.GetAttribute("num");
-                                pin.name = reader.GetAttribute("name");
-                                pin.status = reader.GetAttribute("status");
-                                pin.calibrated = reader.GetAttribute("calibrated");
-                                pin.type = reader.GetAttribute("type");
-                                if (pin.type == "din")
-                                {
-                                    DataHolderIface.SetIntVal(pin.name, Convert.ToInt32(Math.Floor(Convert.ToDouble(pin.calibrated))));
-                                }
-                                else if (pin.type == "ain")
-                                {
-                                    DataHolderIface.SetFloatVal(pin.name, float.Parse(pin.calibrated));
-                                }
-                                if (pin.name != "") pinList.Add(pin);
+                                DataHolderIface.SetIntVal(pin.name, Convert.ToInt32(Math.Floor(Convert.ToDouble(pin.calibrated))));
                             }
+                            else if (pin.type == "ain")
+                            {
+                                DataHolderIface.SetFloatVal(pin.name, float.Parse(pin.calibrated));
+                            }
+                            if (pin.name != "") pinList.Add(pin);
                         }
                     }
                 }
@@ -81,14 +79,12 @@ namespace ioioDebuger
             {
                 run = false;
                 runButton.Text = "Start";
-                tbStatusUrl.Enabled = true;
                 runLabel.Text = "stopped";
             }
             else
             {
                 run = true;
                 runButton.Text = "Stop";
-                tbStatusUrl.Enabled = false;
                 runLabel.Text = "running...";
             }
         }
