@@ -113,7 +113,7 @@ namespace ioioDebuger
         bool errorNoted = false;
         private void errorCheck(string xmlString)
         {
-            if (xmlString == lastXmlString)
+            if (xmlString != lastXmlString)
             {
                 counter = 0;
                 errorNoted = false;
