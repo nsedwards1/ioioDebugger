@@ -237,7 +237,7 @@
             this.tbIpAddress.Name = "tbIpAddress";
             this.tbIpAddress.Size = new System.Drawing.Size(88, 20);
             this.tbIpAddress.TabIndex = 12;
-            this.tbIpAddress.Text = "192.168.0.18";
+            this.tbIpAddress.Text = "192.168.0.157";
             // 
             // trackBar1
             // 
