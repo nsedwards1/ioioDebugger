@@ -26,9 +26,7 @@ namespace ioioDebuger
             InitializeComponent();
             timer1.Enabled = true;
             tbUps.Text = trackBar1.Value.ToString();
-
-            m_inputControls.Add(new DHControl("RPM Lever", FloatIntBoolNone.Float, textBox1, false, -0.01f));
-            m_inputControls.Add(new DHControl("Green Button", FloatIntBoolNone.Int, tb2, false));
+            sendReqLabel.Text = "";
         }
         
         class pinObject

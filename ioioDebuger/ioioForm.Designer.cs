@@ -44,9 +44,6 @@
             this.send_button = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.sendReqLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tb2 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tbIpAddress = new System.Windows.Forms.TextBox();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
@@ -67,7 +64,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.Location = new System.Drawing.Point(7, 48);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(339, 739);
+            this.richTextBox1.Size = new System.Drawing.Size(339, 736);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
@@ -115,9 +112,9 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.richTextBox1);
             this.groupBox2.Controls.Add(this.runButton);
-            this.groupBox2.Location = new System.Drawing.Point(10, 181);
+            this.groupBox2.Location = new System.Drawing.Point(10, 184);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(352, 793);
+            this.groupBox2.Size = new System.Drawing.Size(352, 790);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Web Request";
@@ -168,7 +165,7 @@
             // 
             // send_button
             // 
-            this.send_button.Location = new System.Drawing.Point(124, 39);
+            this.send_button.Location = new System.Drawing.Point(192, 11);
             this.send_button.Name = "send_button";
             this.send_button.Size = new System.Drawing.Size(62, 23);
             this.send_button.TabIndex = 24;
@@ -186,7 +183,7 @@
             this.groupBox3.Controls.Add(this.tbPinValue);
             this.groupBox3.Location = new System.Drawing.Point(12, 47);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(234, 72);
+            this.groupBox3.Size = new System.Drawing.Size(350, 67);
             this.groupBox3.TabIndex = 25;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Assign Pin Value";
@@ -194,33 +191,11 @@
             // sendReqLabel
             // 
             this.sendReqLabel.AutoSize = true;
-            this.sendReqLabel.Location = new System.Drawing.Point(7, 66);
+            this.sendReqLabel.Location = new System.Drawing.Point(6, 42);
             this.sendReqLabel.Name = "sendReqLabel";
-            this.sendReqLabel.Size = new System.Drawing.Size(0, 13);
+            this.sendReqLabel.Size = new System.Drawing.Size(114, 13);
             this.sendReqLabel.TabIndex = 25;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(262, 61);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 27;
-            // 
-            // tb2
-            // 
-            this.tb2.Location = new System.Drawing.Point(262, 35);
-            this.tb2.Name = "tb2";
-            this.tb2.Size = new System.Drawing.Size(100, 20);
-            this.tb2.TabIndex = 28;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(262, 18);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 13);
-            this.label4.TabIndex = 29;
-            this.label4.Text = "Data Holder:";
+            this.sendReqLabel.Text = "send request response";
             // 
             // label5
             // 
@@ -241,7 +216,7 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(252, 113);
+            this.trackBar1.Location = new System.Drawing.Point(245, 133);
             this.trackBar1.Maximum = 15;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(104, 45);
@@ -252,7 +227,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(255, 97);
+            this.label6.Location = new System.Drawing.Point(248, 117);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(101, 13);
             this.label6.TabIndex = 31;
@@ -261,7 +236,7 @@
             // tbUps
             // 
             this.tbUps.Enabled = false;
-            this.tbUps.Location = new System.Drawing.Point(252, 147);
+            this.tbUps.Location = new System.Drawing.Point(286, 162);
             this.tbUps.Name = "tbUps";
             this.tbUps.Size = new System.Drawing.Size(30, 20);
             this.tbUps.TabIndex = 32;
@@ -269,7 +244,7 @@
             // tbErrorCount
             // 
             this.tbErrorCount.Enabled = false;
-            this.tbErrorCount.Location = new System.Drawing.Point(17, 155);
+            this.tbErrorCount.Location = new System.Drawing.Point(17, 146);
             this.tbErrorCount.Name = "tbErrorCount";
             this.tbErrorCount.Size = new System.Drawing.Size(100, 20);
             this.tbErrorCount.TabIndex = 33;
@@ -278,7 +253,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(14, 126);
+            this.label7.Location = new System.Drawing.Point(14, 117);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(139, 26);
             this.label7.TabIndex = 34;
@@ -295,10 +270,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.tbIpAddress);
-            this.Controls.Add(this.tb2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dataGridView1);
@@ -331,9 +303,6 @@
         private System.Windows.Forms.Button send_button;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label runLabel;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox tb2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbIpAddress;
         private System.Windows.Forms.TrackBar trackBar1;
